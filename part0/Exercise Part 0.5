@@ -1,0 +1,24 @@
+Exercise Part 0.5:
+    Cree un diagrama que describa la situación en la que el usuario accede a la versión de aplicación de una sola página de la aplicación de notas en https://studies.cs.helsinki.fi/exampleapp/spa.
+
+title ExampleApp Exe0.5
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->browser: text/html;
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css text/css;
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: spa.js
+
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{content: "74", date: "2021-06-17T09:29:14.380Z"}, {content: "75", date: "2021-06-17T09:29:14.381Z"},…]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note

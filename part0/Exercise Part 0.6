@@ -1,0 +1,37 @@
+Exercise Part 0.6: 
+    Cree un diagrama que represente la situación en la que el usuario crea una nueva nota utilizando la versión de una sola página de la aplicación.
+
+title ExampleApp single page
+
+note over browser:
+fill in the field and click on the Save button
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+server->browser: Status Code: 302 
+
+note over browser:
+once the status is obtained 
+the page is reloaded
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->browser: text/html;
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css text/css;
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: spa.js
+
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{content: "74", date: "2021-06-17T09:29:14.380Z"}, {content: "75", date: "2021-06-17T09:29:14.381Z"},…]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+including the newly added one
+end note
